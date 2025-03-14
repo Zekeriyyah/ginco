@@ -1,0 +1,40 @@
+app:
+  name: Ginco
+  environment: development  # Change to "production" in prod
+  secret_key: "super-secret-key"
+
+server:
+  host: "0.0.0.0"
+  port: 8080
+
+database:
+  driver: "postgres"
+  host: "postgres"
+  port: 5432
+  user: "ginco_user"
+  password: "ginco_pass"
+  name: "ginco_db"
+  sslmode: "disable"
+
+auth:
+  jwt_secret: "super-secret-jwt-key"
+  token_expiry: 24h  # Token valid for 24 hours
+
+logging:
+  level: "info"
+  format: "json"  # Options: "json", "text"
+
+cache:
+  redis_host: "localhost"
+  redis_port: 6379
+  redis_password: ""
+  ttl: 300  # Cache expiration in seconds
+
+third_party:
+  stripe_api_key: "sk_test_1234567890"
+  email_provider: "smtp"
+  smtp:
+    host: "smtp.gmail.com"
+    port: 587
+    user: "your-email@gmail.com"
+    password: "your-email-password"
