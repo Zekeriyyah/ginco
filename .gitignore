@@ -1,5 +1,6 @@
 .env
-go.mod
 go.sum
 ginco-migrate
 ginco-server
+/pkg/about.txt
+actionplan.txt
