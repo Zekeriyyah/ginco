@@ -64,11 +64,7 @@ func Login(c *gin.Context) {
 		return
 	}
 
-	//ERROR: PASSWORD VERIFICATION HAVING ISSUE
-
 	if !user.VerifyPassword(input.Password) {
-		pkg.Info(input.Password)
-		pkg.Info(user.Password)
 		c.JSON(http.StatusUnauthorized, gin.H{"error-p": "invalid email or password"})
 		return
 	}

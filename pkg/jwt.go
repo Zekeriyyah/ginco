@@ -35,15 +35,17 @@ func ValidateJWT(tokenStr string) (*Claims, error) {
 		return secretKey, nil
 	})
 
-	// return err if token is expired or not valid
+	// Check for parsing errors
 	if err != nil {
+		Info("Token parsing failed")
 		return nil, err
 	}
 
-	// extract claim to return it
+	// Check if token is valid and extract claims
 	claims, ok := token.Claims.(*Claims)
 	if !ok || !token.Valid {
-		return nil, err
+		Info("Token is invalid or claims extraction failed")
+		return nil, jwt.ErrSignatureInvalid
 	}
 	return claims, nil
 

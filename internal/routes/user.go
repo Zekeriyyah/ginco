@@ -14,5 +14,5 @@ func UserRoutes(r *gin.Engine) {
 	// protected routes
 	routes := r.Group("/")
 	routes.Use(middleware.AuthMiddleware())
-	//routes.GET("/profile", handlers.GetUserProfile)
+	routes.GET("/profile", handlers.GetUserProfile)
 }
