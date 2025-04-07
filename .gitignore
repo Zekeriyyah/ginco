@@ -1,6 +1,5 @@
 <<<<<<< HEAD
 .env
-go.sum
 ginco-migrate
 ginco-server
 /pkg/about.txt
