@@ -18,3 +18,16 @@ func Run() {
 
 	log.Println("✅ Migrations completed successfully!")
 }
+
+// Run migrations related to test database
+func TestRun() {
+	db := database.TestDB
+
+	// Auto-migrate test tables
+	err := db.AutoMigrate(&models.User{}, &models.Product{}, &models.Order{})
+	if err != nil {
+		log.Fatal("❌ Failed to migrate test database:", err)
+	}
+
+	log.Println("✅ Test Migrations completed successfully!")
+}
