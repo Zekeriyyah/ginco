@@ -2,15 +2,21 @@ package main
 
 import (
 	"net/http"
+	"os"
 
 	"github.com/gin-gonic/gin"
 	"github.com/zekeriyyah/ginco/internal/database"
 	"github.com/zekeriyyah/ginco/internal/routes"
+	"github.com/zekeriyyah/ginco/migrations"
 	"github.com/zekeriyyah/ginco/pkg"
 )
 
 func main() {
 	database.InitDB()
+	if os.Getenv("RENDER") == "true" {
+		migrations.Run()
+	}
+
 	r := gin.Default()
 
 	r.GET("/ping", func(c *gin.Context) {
