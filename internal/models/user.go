@@ -6,17 +6,24 @@ import (
 
 	"github.com/zekeriyyah/ginco/internal/database"
 	"github.com/zekeriyyah/ginco/pkg"
+	"gorm.io/gorm"
 	_ "gorm.io/gorm"
 )
 
 type User struct {
-	ID        uint      `gorm:"primaryKey" json:"id"`
-	Username  string    `gorm:"uniqueIndex; not null" json:"username,omitempty"`
-	Email     string    `gorm:"uniqueIndex; not null" json:"email,omitempty"`
-	Password  string    `gorm:"not null" json:"-"`
-	CreatedAt time.Time `json:"created_at"`
-	UpdatedAt time.Time `json:"updated_at"`
-	DeletedAt time.Time `gorm:"index" json:"-"`
+	ID        uint           `gorm:"primaryKey" json:"id"`
+	Username  string         `gorm:"unique;not null" json:"username"`
+	Email     string         `gorm:"unique;not null" json:"email"`
+	Password  string         `gorm:"not null" json:"-"`
+	Role      string         `gorm:"default:user" json:"role"` // user | admin
+	Orders    []Order        `gorm:"foreignKey:UserID" json:"orders"`
+	CreatedAt time.Time      `json:"created_at"`
+	UpdatedAt time.Time      `json:"updated_at"`
+	DeletedAt gorm.DeletedAt `gorm:"index" json:"-"`
+}
+
+func NewUser() *User {
+	return &User{}
 }
 
 func (u *User) SetPassword(password string) error {
