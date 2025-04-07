@@ -1,0 +1,28 @@
+# Exported from Render on 2025-04-07T21:44:29Z
+services:
+- type: web
+  name: ginco
+  runtime: go
+  repo: https://github.com/Zekeriyyah/ginco
+  plan: free
+  envVars:
+  - key: DB_PORT
+    sync: false
+  - key: JWT_SECRET
+    sync: false
+  - key: DB_SSLMODE
+    sync: false
+  - key: DB_NAME
+    sync: false
+  - key: DB_PASSWORD
+    sync: false
+  - key: DB_USER
+    sync: false
+  - key: DB_HOST
+    sync: false
+  - fromGroup: .env
+  region: oregon
+  buildCommand: go build -tags netgo -ldflags '-s -w' -o main
+  startCommand: ./main
+  rootDir: cmd/server/
+version: "1"
