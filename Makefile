@@ -27,6 +27,10 @@ migrate:
 	$(info ********************* automigrating the model *************************)
 	$(GO) run cmd/migrate/main.go
 
+test:
+	$(info ********************* run tests *************************)
+	$(GO) test ./internal/models/...
+
 # Lint the code
 lint:
 	$(GOLINT) run ./...

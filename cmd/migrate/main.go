@@ -7,5 +7,8 @@ import (
 
 func main() {
 	database.InitDB()
+	database.TestSetup()
+
 	migrations.Run()
+	migrations.TestRun()
 }
